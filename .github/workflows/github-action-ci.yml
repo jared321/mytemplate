@@ -89,10 +89,10 @@ jobs:
         # Therefore, save each of these to a unique file .coverage_<package name>
         # Save all in root of repo for later aggregation.
         pushd mytemplate_pypkg
-        COVERAGE_FILE=../.coverage_mytemplate tox -r -e py-coverage
+        COVERAGE_FILE=../.coverage_mytemplate tox -r -e coverage
         popd
         pushd mytemplate2_pypkg
-        COVERAGE_FILE=../.coverage_mytemplate2 tox -r -e py-coverage
+        COVERAGE_FILE=../.coverage_mytemplate2 tox -r -e coverage
         popd
         # This aggregates into .coverage for coveralls
         tox -r -e aggregate,coveralls,report -- ./.coverage_*
