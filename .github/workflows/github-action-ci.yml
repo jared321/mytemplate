@@ -49,23 +49,6 @@ jobs:
           mytemplate_pypkg/.tox/.pkg/dist/mytemplate-*.whl
           mytemplate_pypkg/.tox/.pkg/dist/mytemplate-*.tar.gz
 
-    #####----- MYTEMPLATE2 PYTHON PACKAGE STEPS
-    # Main test step is full test suite run on installed package with no
-    # coverage
-    - name: Test mytemplate2 python package
-      run: |
-        pushd mytemplate2_pypkg
-        tox -r -e nocoverage
-        popd
-
-    - name: Archive tested mytemplate2 distributions
-      uses: actions/upload-artifact@v3
-      with:
-        name: tested-mytemplate2-packages
-        path: |
-          mytemplate2_pypkg/.tox/.pkg/dist/mytemplate2-*.whl
-          mytemplate2_pypkg/.tox/.pkg/dist/mytemplate2-*.tar.gz
-
     #####----- FULL REPOSITORY STEPS
     # Coverage is full test suite run on local clone so that coveralls
     # has nice output.  Generate html report to export as artifact.
@@ -78,9 +61,6 @@ jobs:
         # Save all in root of repo for later aggregation.
         pushd mytemplate_pypkg
         COVERAGE_FILE=../.coverage_mytemplate tox -r -e coverage
-        popd
-        pushd mytemplate2_pypkg
-        COVERAGE_FILE=../.coverage_mytemplate2 tox -r -e coverage
         popd
         # This aggregates into .coverage for coveralls
         tox -r -e aggregate,coveralls,report -- ./.coverage_*
