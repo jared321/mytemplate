@@ -28,14 +28,13 @@ def load_tests(loader, suite, pattern):
         pattern - ignored
     """
     here_dir = Path(__file__).resolve().parent
-    pkg_root = here_dir.parent
     start_dir = here_dir.joinpath("tests")
 
     print()
     print(f"Discover tests in {start_dir}")
     suites_all = loader.discover(
         start_dir=str(start_dir),
-        top_level_dir=str(pkg_root),
+        top_level_dir=str(here_dir),
         pattern="Test*.py"
     )
     suites_all = load_tests_subA(loader, suites_all, pattern)
