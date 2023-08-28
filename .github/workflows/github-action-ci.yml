@@ -26,7 +26,7 @@ jobs:
     - name: Test mytemplate python package
       run: |
         pushd mytemplate_pypkg
-        tox -r -e py-nocoverage
+        tox -r -e nocoverage
         popd
 
   #####----- MYTEMPLATE2 FULL TESTING OF INSTALLED PACKAGE WITHOUT COVERAGE
@@ -54,7 +54,7 @@ jobs:
     - name: Test mytemplate2 python package
       run: |
         pushd mytemplate2_pypkg
-        tox -r -e py-nocoverage
+        tox -r -e nocoverage
         popd
 
   #####----- MEASURE COVERAGE ACROSS ALL PACKAGES
